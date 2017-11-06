@@ -1,0 +1,36 @@
+<project name = "Rweixin" default = "install" basedir = ".">
+	
+	<property environment = "env" />
+	<property name = "package.name" value = "Rweixin" />
+	<property name = "r.home" value = "D:/Software/R/R-3.4.2" />
+	<property name = "rtools.home" value = "C:/Rtools" />
+	<property name = "path" value = "${r.home}/bin;${rtools.home}/bin;"/>
+	<property name = "output.folder" value = "${basedir}/output/"/>
+
+	<target name="clean">
+		<delete dir="${output.folder}" failonerror = "false"/>
+		<mkdir dir="${output.folder}/${package.name}"/>
+		<copy todir="${output.folder}/${package.name}">
+			<fileset dir="${basedir}">
+				<include name="**"/>
+			</fileset>
+		</copy>
+	</target>
+	
+	<target name ="build" depends="clean">
+		<exec executable="${r.home}/bin/R" dir ="${output.folder}" failonerror = "true">
+			<env key="Path" value="${path}"/>
+			<arg value="CMD"/>
+			<arg line ='build ${package.name}'/>
+		</exec>
+	</target>
+
+	<target name ='install' depends ='build'>
+		<exec executable="${r.home}/bin/R" dir ="${output.folder}" failonerror = "true">
+			<env key="Path" value="${path}"/>
+			<arg value="CMD"/>
+			<arg line ='INSTALL --build ${package.name}'/>
+		</exec>
+	</target>
+	
+</project>

@@ -1,0 +1,14 @@
+Package: Rweixin
+License: GPL
+Title: An interface to the Weixin open platform
+Type: Package
+LazyLoad: yes
+Author: Jian Li, Dawei Lang
+Maintainer: Dawei Lang <chiffonlang@icloud.com>
+Description: This package provides an interface to weixin using
+    the API.
+Version: 0.0-1
+Date: 2017-08-28
+Depends: R (>= 3.0.0), methods, utils, tools, RCurl, jsonlite
+Imports: methods
+
