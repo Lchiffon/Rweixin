@@ -13,7 +13,7 @@
 ##' @return a logical value 
 ##' @note You should register an application on weixin firstly.
 ##' @author Jian Li <\email{rweibo@@sina.com}>
-##' @seealso See Also as \code{\link{createOAuth}}
+##' @seealso See Also as \code{\link{createWeixin}}
 ##' @references \url{https://mp.weixin.qq.com}
 ##' @keywords authorization
 ##' @examples \dontrun{
