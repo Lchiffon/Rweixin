@@ -39,12 +39,12 @@ setRefClass("weixin",
 				}
 				return(OUT)
 			}, 
-			authorize = function(forcelogin = FALSE) {
+			authorize = function(forcelogin = FALSE,...) {
 				time.expr <- as.POSIXlt(.self$oauthTime, format = "%Y-%m-%d %H:%M:%S") + .self$oauthLife
 				is.expr <- is.na(time.expr) || time.expr < Sys.time()
 				if (is.expr || forcelogin) {
 					verifyURL <- paste0(.self$authURL, "?grant_type=client_credential&appid=", .self$appID, "&secret=", .self$appSecret)
-					tokenList <- fromJSON(getURL(verifyURL))
+					tokenList <- fromJSON(getURL(verifyURL,...))
 					curr.time <- Sys.time()
 					if ("errcode" %in% names(tokenList)) {
 						.self$oauthMsg = tokenList$errmsg

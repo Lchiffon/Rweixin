@@ -1,2 +1,6 @@
 /.project
 /output/
+.Rproj.user
+.Rhistory
+.Rbuildignore
+Rweixin.Rproj

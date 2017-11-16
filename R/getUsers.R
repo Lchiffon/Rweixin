@@ -1,16 +1,16 @@
 
-getUsers <- function(obj, userlist = "") {
+getUsers <- function(obj, userlist = "", ...) {
 	userlist <- .verifyChar(userlist)
 	if (!inherits(obj, "weixin")) stop("A weixin object is required!")
 	if (!nzchar(userlist)) {
-		userlist <- getUserList(obj)
+		userlist <- getUserList(obj, ...)
 	}
 	
 	outlist <- list()
 	for (i in 1:length(userlist)) {
 		requestURL <- "https://api.weixin.qq.com/cgi-bin/user/info"
 		s1 <- paste0(requestURL, "?access_token=", obj$oauthToken, "&openid=", userlist[i], "&lang=zh_CN")
-		u1 <- try(.getURL(s1), silent = TRUE)
+		u1 <- try(.getURL(s1, ...), silent = TRUE)
 		if (inherits(u1, "try-error")) {
 			outlist[[i]] <- data.frame()
 		} else {

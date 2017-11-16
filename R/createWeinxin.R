@@ -14,9 +14,9 @@
 ##' 
 ##' w1 <- createWeixin("test")
 ##' }
-createWeixin <- function(app_name) {
+createWeixin <- function(app_name,...) {
 	oauthobj <- new("weixin", appName = app_name)
-	oauthobj$authorize()
+	oauthobj$authorize(...)
 	return(oauthobj)
 }
 

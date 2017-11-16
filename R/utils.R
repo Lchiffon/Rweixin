@@ -16,8 +16,8 @@
 	return(OUT)
 }
 
-.getURL <- function(strurl, errormsg = "") {
-	OUT <- fromJSON(getURL(strurl, .encoding = "UTF-8"))
+.getURL <- function(strurl, errormsg = "",...) {
+	OUT <- fromJSON(getURL(strurl, .encoding = "UTF-8",...))
 	if ("errcode" %in% names(OUT)) {	
 		stop(paste0(errormsg, "\nServer response: ", OUT$errmsg))
 	} else {
