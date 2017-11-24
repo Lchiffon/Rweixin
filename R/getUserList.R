@@ -11,7 +11,7 @@ getUserList <- function(obj, ...) {
 		while (length(OUT) < u0$total) {
 
 			s1 <- paste0(requestURL, "?access_token=", obj$oauthToken, "&next_openid=", tmp.nextid)
-			u1 <- fromJSON(getURL(s1, ssl.verifypeer =F))
+			u1 <- fromJSON(getURL(s1, ...))
 			tmp.nextid <- u1$next_openid
 			OUT <- c(OUT, u1$data$openid)
 		}
