@@ -2,7 +2,7 @@
 getUsers <- function(obj, userlist = "", ...) {
 	userlist <- .verifyChar(userlist)
 	if (!inherits(obj, "weixin")) stop("A weixin object is required!")
-	if (!nzchar(userlist)) {
+	if (!identical(userlist, "")) {
 		userlist <- getUserList(obj, ...)
 	}
 	
