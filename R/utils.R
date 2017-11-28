@@ -16,6 +16,10 @@
 	return(OUT)
 }
 
+.transTime <- function(num) {
+	strftime(as.POSIXct(as.numeric(num), origin="1970-01-01"), format = "%Y-%m-%d %H:%M:%S")
+}
+
 .getURL <- function(strurl, errormsg = "",...) {
 	OUT <- fromJSON(getURL(strurl, .encoding = "UTF-8",...))
 	if ("errcode" %in% names(OUT)) {	
