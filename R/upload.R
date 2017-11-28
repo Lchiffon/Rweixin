@@ -2,7 +2,44 @@ uploadImage = function(obj, fileName,...){
   if (!inherits(obj, "weixin")) stop("A weixin object is required!")
   if (!file.exists(fileName)) stop(sprintf("This file (%s) does not exist!", fileName))
   if (file.size(fileName)>9e5) stop(sprintf("This file (%s) is too large, please compress it!", fileName))
+  url = 'https://api.weixin.qq.com/cgi-bin/media/uploadimg'
+  requestURL = paste0(url, "?access_token=", obj$oauthToken)
+  if(grepl('\\.png$',fileName)){
+    type = 'application/png'
+  }else{
+    type = 'application/jpg'
+  }
   
-  postForm(url, file=fileUpload("1.jpg", contentType = "application/jpg"),
-                   .opts = curlOptions(ssl.verifypeer = F))
+  response = postForm(requestURL, file=fileUpload(fileName, contentType = type),
+                   .opts = curlOptions(...))
+  fromJSON(response)
 }
+
+
+
+uploadNews = function(obj,
+                      title,
+                      thumb_media_id,
+                      author,
+                      digest = NULL,
+                      show_cover_pic = 1,
+                      content,
+                      content_source_url = NULL, ...){
+  if (!inherits(obj, "weixin")) stop("A weixin object is required!")
+  url = 'https://api.weixin.qq.com/cgi-bin/material/add_news'
+  requestURL = paste0(url, "?access_token=", obj$oauthToken)
+  lis = list(articles=list(list(
+        title = title,
+        thumb_media_id = thumb_media_id,
+        author = author,
+        digest = digest,
+        show_cover_pic = show_cover_pic,
+        content = content,
+        content_source_url = content_source_url
+    )))
+
+  response = .postURL(requestURL,lis,ssl.verifypeer=F)
+
+  response
+}
+

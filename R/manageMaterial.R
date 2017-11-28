@@ -1,9 +1,9 @@
 getMaterialNum = function(obj,...){
   if (!inherits(obj, "weixin")) stop("A weixin object is required!")
-  requestURL = "https://api.weixin.qq.com/cgi-bin/material/get_materialcount"
-  s0 = paste0(requestURL, "?access_token=", obj$oauthToken)
+  url = "https://api.weixin.qq.com/cgi-bin/material/get_materialcount"
+  requestURL = paste0(url, "?access_token=", obj$oauthToken)
   
-  u0 = .getURL(s0, ...)
+  u0 = .getURL(requestURL, ...)
   return(u0)
 }
 

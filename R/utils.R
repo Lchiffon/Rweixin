@@ -46,7 +46,9 @@
     OUT = fromJSON(OUT)
   }
     
-  if ("errcode" %in% names(OUT)) {	
+  if ("errcode" %in% names(OUT)) {
+    if(OUT$errcode==0) return(OUT)
+    
     stop(paste0(errormsg, "\nServer response: ", OUT$errmsg))
   } else {
     return(OUT)
