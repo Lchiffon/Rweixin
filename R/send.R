@@ -18,5 +18,5 @@ sendNews = function(obj, mediaID,...){
     "send_ignore_reprint"=0
   )
   
-  response = .postURL(requestURL, lis2, ...)
+  response = .postURL(requestURL, lis, ...)
 }
