@@ -2,7 +2,7 @@
 getUsers <- function(obj, userlist = "", ...) {
 	userlist <- .verifyChar(userlist)
 	if (!inherits(obj, "weixin")) stop("A weixin object is required!")
-	if (!identical(userlist, "")) {
+	if (identical(userlist, "")) {
 		userlist <- getUserList(obj, ...)
 	}
 	
@@ -29,6 +29,8 @@ getUsers <- function(obj, userlist = "", ...) {
 					openid = .transChar(u1$openid), 
 					unionid = .transChar(u1$unionid), 
 					remark = .transChar(u1$remark), 
+					groupid = .transChar(u1$groupid), 
+					tagid = paste0(.transChar(u1$tagid_list), collapse = ","),
 					headimgurl = .transChar(u1$headimgurl), 
 					stringsAsFactors = FALSE)	
 		}
