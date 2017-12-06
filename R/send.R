@@ -19,4 +19,20 @@ sendNews = function(obj, mediaID,...){
   )
   
   response = .postURL(requestURL, lis, ...)
+  response
+}
+
+sendMessage = function(obj, openid, message,...){
+  if (!inherits(obj, "weixin")) stop("A weixin object is required!")
+  
+  url = 'https://api.weixin.qq.com/cgi-bin/message/custom/send'
+  requestURL = paste0(url, "?access_token=", obj$oauthToken)
+  lis = list(
+    "touser" = openid,
+    "msgtype" = "text",
+    "text" = list(content = message)
+  )
+  
+  response = .postURL(requestURL, lis, ...)
+  response
 }
