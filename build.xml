@@ -2,7 +2,7 @@
 	
 	<property environment = "env" />
 	<property name = "package.name" value = "Rweixin" />
-	<property name = "r.home" value = "D:/Software/R/R-3.4.3" />
+	<property name = "r.home" value = "D:/Software/R/R-3.4.4" />
 	<property name = "rtools.home" value = "C:/Rtools" />
 	<property name = "path" value = "${r.home}/bin;${rtools.home}/bin;"/>
 	<property name = "output.folder" value = "${basedir}/output/"/>
