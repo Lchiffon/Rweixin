@@ -50,7 +50,7 @@ uploadDraft = function(obj,
                       author,
                       digest = NULL,
                       content,
-                      content_source_url = NULL
+                      content_source_url = NULL,
                       thumb_media_id,
                       need_open_comment=0,
                       only_fans_can_comment=0, ...){
