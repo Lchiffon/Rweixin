@@ -43,3 +43,36 @@ uploadNews = function(obj,
   response
 }
 
+
+
+uploadDraft = function(obj,
+                      title,
+                      author,
+                      digest = NULL,
+                      content,
+                      content_source_url = NULL
+                      thumb_media_id,
+                      need_open_comment=0,
+                      only_fans_can_comment=0, ...){
+  if (!inherits(obj, "weixin")) stop("A weixin object is required!")
+  url = 'https://api.weixin.qq.com/cgi-bin/draft/add'
+  requestURL = paste0(url, "?access_token=", obj$oauthToken)
+  lis = list(articles=list(list(
+        title = title,
+        author = author,
+        digest = digest,        
+        content = content,
+        content_source_url = content_source_url,
+        thumb_media_id = thumb_media_id,
+        need_open_comment = need_open_comment,
+        only_fans_can_comment = only_fans_can_comment
+        
+    )))
+
+  response = .postURL(requestURL,lis,ssl.verifypeer=F)
+
+  response
+}
+
+
+
